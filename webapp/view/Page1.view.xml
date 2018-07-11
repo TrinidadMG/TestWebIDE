@@ -1,0 +1,178 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns:u="sap.ui.unified" xmlns="sap.m" xmlns:layout="sap.ui.layout" controllerName="com.sap.build.sap.b1ExerciseNice.controller.Page1">
+	<Page showHeader="true" title="Shoe Store" showFooter="true" showNavButton="false">
+		<content>
+			<IconTabBar expandable="false" expanded="true" applyContentPadding="false" backgroundDesign="Solid" upperCase="false" visible="true" selectedKey="Ok">
+				<items>
+					<IconTabFilter icon="" iconColor="Default" text="All Items" count="23" design="Vertical" showAll="false" textDirection="Inherit" enabled="true" visible="true" iconDensityAware="false">
+						<content>
+							<Table width="auto" noDataText="No data" mode="None" showSeparators="All" growing="true" growingThreshold="20" growingScrollToLoad="true" class="sapUiResponsiveMargin" itemPress="_onTableItemPress" items="{path:'/Items', templateShareable:true}">
+								<infoToolbar>
+									<Toolbar width="100%" height="auto" design="Auto" visible="false" enabled="true">
+										<content>
+											<Label text="Label" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+										</content>
+									</Toolbar>
+								</infoToolbar>
+								<headerToolbar>
+									<OverflowToolbar width="auto" height="auto" design="Transparent" visible="true" enabled="true">
+										<content>
+											<Title text="Items (3)" titleStyle="Auto" width="auto" textAlign="Begin" visible="true" wrapping="false"/>
+											<ToolbarSpacer width=""/>
+											<OverflowToolbarButton text="Sort" type="Transparent" icon="sap-icon://sort" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false"/>
+											<OverflowToolbarButton text="Filter" type="Transparent" icon="sap-icon://filter" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false"/>
+											<OverflowToolbarButton text="Group" type="Transparent" icon="sap-icon://group-2" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false"/>
+											<OverflowToolbarButton text="Settings" type="Transparent" icon="sap-icon://action-settings" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false"/>
+										</content>
+									</OverflowToolbar>
+								</headerToolbar>
+								<columns>
+									<Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Phone" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+										<header>
+											<Text text="Item Code" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+										</header>
+										<footer/>
+									</Column>
+									<Column width="170px" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="WithoutHeader" mergeDuplicates="false">
+										<header>
+											<Text text="Description" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+										</header>
+										<footer/>
+									</Column>
+									<Column width="auto" hAlign="Center" vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Block" mergeDuplicates="false">
+										<header>
+											<Text text="Quantity" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+										</header>
+										<footer/>
+									</Column>
+									<Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Desktop" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+										<header>
+											<Text text="Price" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+										</header>
+										<footer/>
+									</Column>
+									<Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+										<header>
+											<Text text="Currency" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+										</header>
+										<footer/>
+									</Column>
+								</columns>
+								<items>
+									<ColumnListItem type="Navigation" press="_onRowPress">
+										<cells>
+											<Link text="{ItemCode}" textAlign="Begin" width="auto" target="_blank" wrapping="false" enabled="true" visible="true" emphasized="false" subtle="false"/>
+											<Text text="{ItemName}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+											<Text text="{path: 'QuantityOnStock', type: 'sap.ui.model.type.Float', formatOptions: { maxFractionDigits: 2 }}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+											<Text text="{path: 'Price', type: 'sap.ui.model.type.Float', formatOptions: { maxFractionDigits: 2 }}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+											<Link text="{ItemPrices/Price}" textAlign="Begin" width="auto" target="_blank" wrapping="false" enabled="true" visible="true" emphasized="false" subtle="false"/>
+										</cells>
+									</ColumnListItem>
+								</items>
+							</Table>
+						</content>
+					</IconTabFilter>
+					<IconTabFilter icon="" iconColor="Default" text="Matching Items" count="50" design="Vertical" showAll="false" textDirection="Inherit" enabled="true" visible="true" iconDensityAware="false">
+						<content>
+							<Image id="img" tooltip="image" class="sapUiLargeMargin" src="{demo>/fileURL}"/>
+							<u:FileUploader id="fileUploader" name="files" uploadUrl="{demo>/url}" useMultipart="true" sendXHR="true" uploadOnChange="true" tooltip="Upload your file to the local server" fileType="jpg,png,gif" mimeType="application/x-zip-compressed,application/zip,application/octet-stream,image/png,image/jpg,image/jpeg,image/bmp,image/tiff" change="fileUploadChange" uploadStart="fileUploadStart" uploadComplete="fileUploadComplete">
+								<u:headerParameters>
+									<u:FileUploaderParameter name="Accept" value="application/json"/>
+								</u:headerParameters>
+							</u:FileUploader>
+							<Table width="auto" noDataText="No data" mode="None" showSeparators="All" growing="true" growingThreshold="20" growingScrollToLoad="true" class="sapUiResponsiveMargin" id="tableImgClass">
+								<infoToolbar/>
+								<headerToolbar>
+									<OverflowToolbar width="auto" height="auto" design="Transparent" visible="true" enabled="true">
+										<content>
+											<Text text="Items (" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+											<Text text="23" width="17px" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+											<Text text=")" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+											<ToolbarSpacer width=""/>
+											<OverflowToolbarButton text="Sort" type="Transparent" icon="sap-icon://sort" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false"/>
+											<OverflowToolbarButton text="Group" type="Transparent" icon="sap-icon://group-2" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false"/>
+											<OverflowToolbarButton text="Settings" type="Transparent" icon="sap-icon://action-settings" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false"/>
+										</content>
+									</OverflowToolbar>
+								</headerToolbar>
+								<columns>
+									<Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Phone" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+										<header>
+											<Text text="Image" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+										</header>
+										<footer/>
+									</Column>
+									<Column width="170px" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="WithoutHeader" mergeDuplicates="false">
+										<header>
+											<Text text="Product Id" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+										</header>
+										<footer/>
+									</Column>
+									<Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Block" mergeDuplicates="false">
+										<header>
+											<Text text="Name" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+										</header>
+										<footer/>
+									</Column>
+									<Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+										<header>
+											<Text text="Inventory Level" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+										</header>
+										<footer/>
+									</Column>
+									<Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+										<header>
+											<Text text="Score" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+										</header>
+										<footer/>
+									</Column>
+									<Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+										<header>
+											<Text text="Price" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+										</header>
+										<footer/>
+									</Column>
+									<Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Desktop" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+										<header>
+											<Text text="Document Type" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="false"/>
+										</header>
+										<footer/>
+									</Column>
+									<Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Desktop" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+										<header>
+											<Text text="Price" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="false"/>
+										</header>
+										<footer/>
+									</Column>
+								</columns>
+								<items>
+									<ColumnListItem id="colImgClass" type="Navigation" press="CreateSalesOrder">
+										<cells>
+											<Image width="140px" height="140px" id="image0" src="{image} "/>
+											<Text text="{productid}" id="text21"/>
+											<Text xmlns:mvc="sap.ui.core.mvc" xmlns:u="sap.ui.unified" xmlns="sap.m" xmlns:layout="sap.ui.layout" text="{name}" id="text21_copy"/>
+											<Text xmlns:mvc="sap.ui.core.mvc" xmlns:u="sap.ui.unified" xmlns="sap.m" xmlns:layout="sap.ui.layout" text="{score}" id="text21_copy2"/>
+											<Text xmlns:mvc="sap.ui.core.mvc" xmlns:u="sap.ui.unified" xmlns="sap.m" xmlns:layout="sap.ui.layout" text="{InventoryLevel}" id="text21_copy3"/>
+											<ObjectNumber number="{price}" unit="{priceCurrency}" id="number0"/>
+										</cells>
+									</ColumnListItem>
+								</items>
+							</Table>
+						</content>
+					</IconTabFilter>
+				</items>
+				<content/>
+			</IconTabBar>
+		</content>
+		<footer>
+			<OverflowToolbar width="100%" height="auto" design="Auto" enabled="true" visible="true">
+				<content>
+					<ToolbarSpacer width=""/>
+					<OverflowToolbarButton text="Action" type="Transparent" icon="sap-icon://action" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false"/>
+				</content>
+			</OverflowToolbar>
+		</footer>
+		<headerContent/>
+		<subHeader/>
+		<customHeader/>
+	</Page>
+</mvc:View>

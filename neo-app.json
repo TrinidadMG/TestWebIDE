@@ -1,0 +1,33 @@
+{
+	"welcomeFile": "webapp/test/testFLPService.html",
+	"routes": [{
+		"path": "/resources",
+		"target": {
+			"type": "service",
+			"name": "sapui5",
+			"version": "1.52.12",
+			"preferLocal": true,
+			"entryPath": "/resources"
+		},
+		"description": "SAPUI5 Resources"
+	}, {
+		"path": "/test-resources",
+		"target": {
+			"type": "service",
+			"version": "1.52.12",
+			"name": "sapui5",
+			"entryPath": "/test-resources"
+		},
+		"description": "SAPUI5 Test Resources"
+	},
+    {
+      "path": "/B1SL_Summit2018_s",
+      "target": {
+        "type": "destination",
+        "name": "B1SL_Summit2018_s"
+      },
+      "description": "B1SL_Summit2018_PL03"
+    }],
+	"authenticationMethod": "none",
+	"sendWelcomeFileRedirect": true
+}

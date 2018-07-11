@@ -1,0 +1,56 @@
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+	xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+	<edmx:DataServices m:DataServiceVersion="2.0">
+		<Schema Namespace="8be42dd038ac0a9c0ffe463d" xml:lang="en" sap:schema-version="0000" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+			<EntityContainer Name="8be42dd038ac0a9c0ffe463d_Entities" m:IsDefaultEntityContainer="true">
+				<EntitySet Name="ItemsSet" EntityType="8be42dd038ac0a9c0ffe463d.Items" sap:creatable="true" sap:updatable="true" sap:deletable="true"/>
+				<AssociationSet Name="ItemsRelationNamePrices" Association="8be42dd038ac0a9c0ffe463d.ItemsRelationNamePrices" sap:creatable="true"
+					sap:updatable="true" sap:deletable="true">
+					<End EntitySet="ItemsSet" Role="FromRole_ItemsRelationNamePrices"/>
+					<End EntitySet="PricesSet" Role="ToRole_ItemsRelationNamePrices"/>
+				</AssociationSet>
+				<EntitySet Name="PricesSet" EntityType="8be42dd038ac0a9c0ffe463d.Prices" sap:creatable="true" sap:updatable="true" sap:deletable="true"/>
+			</EntityContainer>
+			<EntityType Name="Items">
+				<Key>
+					<PropertyRef Name="ID"/>
+				</Key>
+				<Property Name="ID" Type="Edm.String" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:label="ID"/>
+				<Property Name="Desc" Type="Edm.String" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:label="Desc"/>
+				<Property Name="Quantity" Type="Edm.Decimal" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:label="Quantity"/>
+				<Property Name="Price" Type="Edm.Decimal" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:label="Price"/>
+				<Property Name="Currency" Type="Edm.String" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:label="Currency"/>
+				<Property Name="Color" Type="Edm.String" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:label="Color"/>
+				<Property Name="Size" Type="Edm.String" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:label="Size"/>
+				<Property Name="Comment" Type="Edm.String" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:label="Comment"/>
+				<Property Name="Image" Type="Edm.String" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:label="Image"/>
+				<NavigationProperty Name="RelationName" Relationship="8be42dd038ac0a9c0ffe463d.ItemsRelationNamePrices"
+					FromRole="FromRole_ItemsRelationNamePrices" ToRole="ToRole_ItemsRelationNamePrices"/>
+			</EntityType>
+			<Association Name="ItemsRelationNamePrices">
+				<End Type="8be42dd038ac0a9c0ffe463d.Items" Multiplicity="1" Role="FromRole_ItemsRelationNamePrices"/>
+				<End Type="8be42dd038ac0a9c0ffe463d.Prices" Multiplicity="*" Role="ToRole_ItemsRelationNamePrices"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_ItemsRelationNamePrices">
+						<PropertyRef Name="ID"/>
+					</Principal>
+					<Dependent Role="ToRole_ItemsRelationNamePrices">
+						<PropertyRef Name="___FK_844c086c26ffc5350ffe5218_00017"/>
+					</Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<EntityType Name="Prices">
+				<Key>
+					<PropertyRef Name="ID"/>
+				</Key>
+				<Property Name="ID" Type="Edm.String" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:label="ID"/>
+				<Property Name="Column1" Type="Edm.String" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:label="Column1"/>
+				<Property Name="Price_No" Type="Edm.Decimal" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:label="Price_No"/>
+				<Property Name="Price" Type="Edm.Decimal" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:label="Price"/>
+				<Property Name="Currency" Type="Edm.String" sap:creatable="true" sap:updatable="true" sap:deletable="true" sap:label="Currency"/>
+				<Property Name="___FK_844c086c26ffc5350ffe5218_00017" Type="Edm.String" sap:creatable="true" sap:updatable="true" sap:deletable="true"
+					sap:label="___FK_844c086c26ffc5350ffe5218_00017"/>
+			</EntityType>
+		</Schema>
+	</edmx:DataServices>
+</edmx:Edmx>
